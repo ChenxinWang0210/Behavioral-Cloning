@@ -16,10 +16,21 @@ from keras.models import load_model
 import h5py
 from keras import __version__ as keras_version
 
+from scipy.misc import imresize
+
 sio = socketio.Server()
 app = Flask(__name__)
 model = None
 prev_image_array = None
+
+### Resize Image for fast training ###
+img_height = 70
+img_width = 224
+def resize_img(img):
+    crop_img = img[53:153,:,:]
+    resized_img=imresize(crop_img, (img_height, img_width), interp='bilinear')
+   
+    return resized_img
 
 
 class SimplePIController:
@@ -61,7 +72,9 @@ def telemetry(sid, data):
         imgString = data["image"]
         image = Image.open(BytesIO(base64.b64decode(imgString)))
         image_array = np.asarray(image)
-        steering_angle = float(model.predict(image_array[None, :, :, :], batch_size=1))
+        resized_img = resize_img(image_array)
+        
+        steering_angle = float(model.predict(resized_img[None, :, :, :], batch_size=1))
 
         throttle = controller.update(float(speed))
 
