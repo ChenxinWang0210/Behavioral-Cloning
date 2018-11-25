@@ -160,7 +160,9 @@ dense_4 (Dense)              (None, 1)                 11
 =================================================================
 
 Total params: 747,899
+
 Trainable params: 747,899
+
 Non-trainable params: 0
 
 Here is a visualization of the architecture 
