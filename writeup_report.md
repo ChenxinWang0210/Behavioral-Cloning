@@ -158,6 +158,7 @@ _________________________________________________________________
 dense_4 (Dense)              (None, 1)                 11
 
 =================================================================
+
 Total params: 747,899
 Trainable params: 747,899
 Non-trainable params: 0
@@ -192,10 +193,12 @@ Random Shift(vertically)
 ![alt text][image8]
 
 Random Brightness
+
 ![alt text][image6]
 ![alt text][image9]
 
 Random Shadow
+
 ![alt text][image6]
 ![alt text][image10]
 
